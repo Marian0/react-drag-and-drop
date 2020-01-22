@@ -45,30 +45,3 @@ export const UploadHint = styled.p`
   color: #6b85a3;
   padding-top: 5px;
 `
-
-export const UploadBody = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  flex-direction: column;
-
-  &:hover {
-    background: #f5f9ff;
-    border: 1px dashed #4991e5;
-    box-sizing: border-box;
-  }
-`
-
-export const UploadText = styled.p`
-  margin-top: 5px;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 12px;
-  line-height: 12px;
-  text-align: center;
-  color: #324964;
-`
-export const UploadLink = styled.a`
-  color: #4991e5;
-`
