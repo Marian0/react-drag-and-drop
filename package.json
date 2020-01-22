@@ -27,5 +27,9 @@
     "lint": "tsc --noEmit --skipLibCheck && eslint 'src/**/*.{js,ts,tsx}' --max-warnings=0",
     "format": "eslint 'src/**/*.{js,ts,tsx}' --max-warnings=0 --fix",
     "clean": "rm -rf .cache && rm -rf ./dist/* && mkdir -p ./dist"
+  },
+  "dependencies": {
+    "icons": "^1.0.0",
+    "src": "^1.1.2"
   }
 }
