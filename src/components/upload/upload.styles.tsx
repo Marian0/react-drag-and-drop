@@ -18,6 +18,10 @@ export const UploadContainer = styled.div`
   width: 40vw;
   max-width: 600px;
   height: 80vh;
+
+  @media screen and (max-width: 800px) {
+    width: 100%;
+  }
 `
 
 export const UploadHeader = styled.div`
