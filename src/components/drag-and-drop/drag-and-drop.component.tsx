@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import FileUploaderPresentationalComponent from './drag-and-drop-presentational.component'
 import { HiddenInputFile } from './drag-and-drop.styles'
+import axios from 'axios'
 
 type Props = {}
 
@@ -8,6 +9,7 @@ type State = {
   dragging: boolean
   file: File | null
   url: string | null
+  progress: number | null
 }
 
 class DragAndDrop extends Component<Props, State> {
@@ -16,7 +18,7 @@ class DragAndDrop extends Component<Props, State> {
 
   constructor(props: Props) {
     super(props)
-    this.state = { dragging: false, file: null, url: '' }
+    this.state = { dragging: false, file: null, url: '', progress: null }
   }
 
   componentDidMount() {
@@ -61,7 +63,7 @@ class DragAndDrop extends Component<Props, State> {
     this.setState({ dragging: false })
 
     if (event.dataTransfer.files && event.dataTransfer.files[0]) {
-      this.setState({ file: event.dataTransfer.files[0] })
+      this.setState({ file: event.dataTransfer.files[0] }, this.startUploading)
     }
   }
 
@@ -71,14 +73,43 @@ class DragAndDrop extends Component<Props, State> {
 
   onFileChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
-      this.setState({ file: event.target.files[0] })
+      this.setState({ file: event.target.files[0] }, this.startUploading)
     }
+  }
+
+  startUploading = async () => {
+    if (!this.state.file) {
+      return
+    }
+    const data = new FormData()
+    data.append('file', this.state.file)
+    axios
+      .post('http://localhost/test-uploads/upload.php', data, {
+        onUploadProgress: (ProgressEvent) => {
+          this.setState({
+            progress: (ProgressEvent.loaded / ProgressEvent.total) * 100
+          })
+        }
+      })
+      .then((res) => res.data)
+      .then((data) => {
+        console.log('Data: ', data)
+        this.setState({
+          progress: null,
+          file: null,
+          url: data.url
+        })
+      })
+      .catch((err: Error) => {
+        console.log('upload fail', err)
+      })
   }
 
   render() {
     return (
       <FileUploaderPresentationalComponent
         dragging={this.state.dragging}
+        progress={this.state.progress}
         url={this.state.url}
         onSelectFileClick={this.onSelectFileClick}
         onDrag={this.overrideEventDefaults}

@@ -9,6 +9,7 @@ import DefaultCompanyLogo from '../shared/default-company-logo'
 
 type PresentationalProps = {
   dragging: boolean
+  progress: number | null
   url: string | null
   onSelectFileClick: () => void
   onDrag: (event: React.DragEvent<HTMLDivElement>) => void
@@ -25,6 +26,7 @@ export const FileUploaderPresentationalComponent: React.SFC<PresentationalProps>
 ) => {
   const {
     dragging,
+    progress,
     url,
     onSelectFileClick,
     onDrag,
@@ -51,6 +53,7 @@ export const FileUploaderPresentationalComponent: React.SFC<PresentationalProps>
       <UploadText>Drag & drop here</UploadText>
       <p>- or -</p>
       <UploadLink onClick={onSelectFileClick}>Select file to upload</UploadLink>
+      {progress ? <p>Progress {progress}</p> : null}
       {props.children}
     </UploadBody>
   )

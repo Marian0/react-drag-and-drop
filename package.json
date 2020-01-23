@@ -29,6 +29,7 @@
     "clean": "rm -rf .cache && rm -rf ./dist/* && mkdir -p ./dist"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "icons": "^1.0.0",
     "src": "^1.1.2"
   }
