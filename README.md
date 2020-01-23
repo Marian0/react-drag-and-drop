@@ -3,7 +3,7 @@ This is a sample project drop down - image uploader with progress css bar.
 To configure backend endpoint you should edit the `src/components/drag-and-drop/drag-and-drop.component.tsx` file.
 
 ## Preview
-![](http://www.giphy.com/gifs/XcYTs09y9QV3oQqUhp)
+![](https://user-images.githubusercontent.com/624592/72985920-53269a80-3de7-11ea-8ec8-869f5f5e1c7d.gif)
 
 ## Author
 - Mariano Peyregne (marianosantafe@gmail.com)
