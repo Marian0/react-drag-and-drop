@@ -1,34 +1,47 @@
-# 📦 React / TypeScript starter project
+# Accord Code Challenge
+This is a sample project drop down - image uploader with progress css bar.
 
-    $ yarn
-    $ yarn dev
+## Author
+- Mariano Peyregne (marianosantafe@gmail.com)
 
-## Conventions
+## Technologies
+- Typescript
+- ReactJS
+- Axios
+- Styled components
 
-* All components go in `components/`
-* All files should be named using `dash-case`
-* Utility functions go in `lib/`
+## To be done
+- Image validation (Backend and server side)
 
-## VSCode
+## Backend was written in PHP just for simplicity
+There is the source code of the backend used:
 
-Install
+```
+<?php
+header("Access-Control-Allow-Origin: *");
+header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
+header('Content-type: application/json');
 
-* https://github.com/styled-components/vscode-styled-components
 
-Add the following to your workspace settings `.vscode/settings.json`
+try {
+    $target_dir = "uploads/";
+    $unique_hash = uniqid();
+    $target_file = $target_dir . $unique_hash . basename($_FILES["file"]["name"]);
+    $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+    $uploadUrl = dirname($actual_link) . '/' . $target_file;
+    $upload = move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
+} catch (\Exception $e) {
 
-```json
-{
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "editor.formatOnSave": false,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  },
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ]
+    echo json_encode([
+        'error' => true,
+        'message' => $e->getMessage()
+    ]);
+
 }
+
+echo json_encode([
+    'error' => false,
+    'message' => 'Upload successfull',
+    'url' => $uploadUrl
+]);
 ```
