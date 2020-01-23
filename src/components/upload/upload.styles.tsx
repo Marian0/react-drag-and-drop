@@ -16,6 +16,7 @@ export const UploadContainer = styled.div`
   flex-direction: column;
 
   width: 40vw;
+  max-width: 600px;
   height: 80vh;
 `
 
