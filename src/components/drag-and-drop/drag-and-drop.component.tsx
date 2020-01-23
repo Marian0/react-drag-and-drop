@@ -9,7 +9,7 @@ type State = {
   dragging: boolean
   file: File | null
   url: string | null
-  progress: number | null
+  progress: number
 }
 
 class DragAndDrop extends Component<Props, State> {
@@ -18,7 +18,7 @@ class DragAndDrop extends Component<Props, State> {
 
   constructor(props: Props) {
     super(props)
-    this.state = { dragging: false, file: null, url: '', progress: null }
+    this.state = { dragging: false, file: null, url: '', progress: -1 }
   }
 
   componentDidMount() {
@@ -95,7 +95,7 @@ class DragAndDrop extends Component<Props, State> {
       .then((data) => {
         console.log('Data: ', data)
         this.setState({
-          progress: null,
+          progress: -1,
           file: null,
           url: data.url
         })

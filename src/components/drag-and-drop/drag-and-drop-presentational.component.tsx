@@ -6,10 +6,11 @@ import {
   RoundedImg
 } from './drag-and-drop.styles'
 import DefaultCompanyLogo from '../shared/default-company-logo'
+import CircularProgress from '../circular-progress/circular-progress.component'
 
 type PresentationalProps = {
   dragging: boolean
-  progress: number | null
+  progress: number
   url: string | null
   onSelectFileClick: () => void
   onDrag: (event: React.DragEvent<HTMLDivElement>) => void
@@ -49,11 +50,14 @@ export const FileUploaderPresentationalComponent: React.SFC<PresentationalProps>
       onDragLeave={onDragLeave}
       onDrop={onDrop}
     >
-      {url ? <RoundedImg src={url} /> : <DefaultCompanyLogo />}
+      {progress >= 0 ? (
+        <CircularProgress progress={progress} />
+      ) : (
+        <>{url ? <RoundedImg src={url} /> : <DefaultCompanyLogo />}</>
+      )}
       <UploadText>Drag & drop here</UploadText>
       <p>- or -</p>
       <UploadLink onClick={onSelectFileClick}>Select file to upload</UploadLink>
-      {progress ? <p>Progress {progress}</p> : null}
       {props.children}
     </UploadBody>
   )
