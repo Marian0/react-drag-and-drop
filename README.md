@@ -14,6 +14,7 @@ To configure backend endpoint you should edit the `src/components/drag-and-drop/
 ## To be done
 - Image validation (Backend and server side)
 - Parametrize backend URL in an ENV file
+- Add refs to colors to components styles
 
 ## Backend was written in PHP just for simplicity
 There is the source code of the backend used:
