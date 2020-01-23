@@ -1,5 +1,6 @@
 # Accord Code Challenge
-This is a sample project drop down - image uploader with progress css bar.
+This is a sample project drop down - image uploader with progress css bar. 
+To configure backend endpoint you should edit the `src/components/drag-and-drop/drag-and-drop.component.tsx` file.
 
 ## Author
 - Mariano Peyregne (marianosantafe@gmail.com)
@@ -12,6 +13,7 @@ This is a sample project drop down - image uploader with progress css bar.
 
 ## To be done
 - Image validation (Backend and server side)
+- Parametrize backend URL in an ENV file
 
 ## Backend was written in PHP just for simplicity
 There is the source code of the backend used:
